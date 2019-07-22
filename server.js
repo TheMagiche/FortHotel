@@ -32,21 +32,21 @@ app.use(cors());
 //   );
 
 // Routes
-app.post("/send-email", function(req, res) {
+app.post("/send-email", function (req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
       // should be replaced with real sender's account
-      user: "krammax@gmail.com",
-      pass: 235209006
+      user: "fortmami.sender@gmail.com",
+      pass: "fort2019"
     }
   });
   let mailOptions = {
     // should be replaced with real recipient's account
-    to: "lullabyltd@hotmail.com",
-    subject: "Contact Form from:  " + req.body.subject,
+    to: "fortmami.receiver@gmail.com",
+    subject: req.body.subject,
     body: "Message:  " + req.body.message,
     html: `<h3> ${req.body.message} </h3>`
   };
@@ -62,21 +62,21 @@ app.post("/send-email", function(req, res) {
   res.end();
 });
 
-app.post("/form", function(req, res) {
+app.post("/form", function (req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
       // should be replaced with real sender's account
-      user: "krammax@gmail.com",
-      pass: 235209006
+      user: "fortmami.sender@gmail.com",
+      pass: "fort2019"
     }
   });
   let mailOptions = {
     // should be replaced with real recipient's account
-    to: "lullabyltd@hotmail.com",
-    subject: "Contact Form from:  " + req.body.subject,
+    to: "fortmami.receiver@gmail.com",
+    subject: req.body.subject,
     body: "Message:  " + req.body.message,
     html: `<h3> ${req.body.message} </h3>`
   };
