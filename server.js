@@ -45,6 +45,7 @@ app.post("/send-email", function (req, res) {
   });
   let mailOptions = {
     // should be replaced with real recipient's account
+    from: "fortmami.sender@gmail.com",
     to: "fortmami.receiver@gmail.com",
     subject: req.body.subject,
     body: "Message:  " + req.body.message,
@@ -62,7 +63,7 @@ app.post("/send-email", function (req, res) {
   res.end();
 });
 
-app.post("/form", function (req, res) {
+app.post("/form", async function (req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -75,6 +76,7 @@ app.post("/form", function (req, res) {
   });
   let mailOptions = {
     // should be replaced with real recipient's account
+    from: "fortmami.sender@gmail.com",
     to: "fortmami.receiver@gmail.com",
     subject: req.body.subject,
     body: "Message:  " + req.body.message,
