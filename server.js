@@ -32,7 +32,7 @@ app.use(cors());
 //   );
 
 // Routes
-app.post("/send-email", function (req, res) {
+app.post("api/send-email", function (req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -63,7 +63,7 @@ app.post("/send-email", function (req, res) {
   res.end();
 });
 
-app.post("/form", async function (req, res) {
+app.post("api/form", async function (req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -105,11 +105,11 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Check on dev mode don't uncomment
-// app.use(express.static(__dirname + '/public/')); // Set up public folder
-// // Handle SPA
-// app.get(/.*/, (req, res) => {
-//     res.sendFile(__dirname + "/public/index.html");
-// });
+app.use(express.static(__dirname + '/public/')); // Set up public folder
+// Handle SPA
+app.get(/.*/, (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 app.listen(port, () => {
   console.log(`Server started on port: ${port}`);
