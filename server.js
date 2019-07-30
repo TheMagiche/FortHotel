@@ -32,7 +32,7 @@ app.use(cors());
 //   );
 
 // Routes
-app.post("api/send-email", function (req, res) {
+app.post("/send-email", function (req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -63,7 +63,7 @@ app.post("api/send-email", function (req, res) {
   res.end();
 });
 
-app.post("api/form", async function (req, res) {
+app.post("/form", async function (req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
