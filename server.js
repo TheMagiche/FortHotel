@@ -32,18 +32,21 @@ app.use(cors());
 //   );
 
 // Routes
-app.post("/send-email", function(req, res) {
+app.post("/api/send-email", function (req, res) {
+  console.log("Sending Email");
   let transporter = nodeMailer.createTransport({
+    pool: true,
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    port: 465,
+    secure: true,
     auth: {
       // should be replaced with real sender's account
       user: "fortmami.sender@gmail.com",
       pass: "fort2019"
     },
-    tls: { rejectUnauthorized: false }
   });
+
+  // ebu try kutuma
   let mailOptions = {
     // should be replaced with real recipient's account
     from: "fortmami.sender@gmail.com",
@@ -57,23 +60,23 @@ app.post("/send-email", function(req, res) {
     }
     console.log("Message %s sent: %s", info.messageId, info.response);
   });
-  res.writeHead(301, {
-    Location: "public/index.html"
-  });
+  // res.writeHead(301, {
+  //   Location: "./public/index.html"
+  // });
   res.end();
 });
 
-app.post("/form", async function(req, res) {
+app.post("/api/form", function (req, res) {
+  console.log("Sending Form");
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    port: 465,
+    secure: true,
     auth: {
       // should be replaced with real sender's account
       user: "fortmami.sender@gmail.com",
       pass: "fort2019"
     },
-    tls: { rejectUnauthorized: false }
   });
   let mailOptions = {
     // should be replaced with real recipient's account
@@ -88,9 +91,9 @@ app.post("/form", async function(req, res) {
     }
     console.log("Message %s sent: %s", info.messageId, info.response);
   });
-  res.writeHead(301, {
-    Location: "public/index.html"
-  });
+  // res.writeHead(301, {
+  //   Location: "./public/index.html"
+  // });
   res.end();
 });
 
