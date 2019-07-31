@@ -32,23 +32,23 @@ app.use(cors());
 //   );
 
 // Routes
-app.post("/send-email", function (req, res) {
+app.post("/send-email", function(req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
       // should be replaced with real sender's account
       user: "fortmami.sender@gmail.com",
       pass: "fort2019"
-    }
+    },
+    tls: { rejectUnauthorized: false }
   });
   let mailOptions = {
     // should be replaced with real recipient's account
     from: "fortmami.sender@gmail.com",
     to: "fortmami.receiver@gmail.com",
     subject: req.body.subject,
-    body: "Message:  " + req.body.message,
     html: `<h3> ${req.body.message} </h3>`
   };
   transporter.sendMail(mailOptions, (error, info) => {
@@ -63,23 +63,23 @@ app.post("/send-email", function (req, res) {
   res.end();
 });
 
-app.post("/form", async function (req, res) {
+app.post("/form", async function(req, res) {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
       // should be replaced with real sender's account
       user: "fortmami.sender@gmail.com",
       pass: "fort2019"
-    }
+    },
+    tls: { rejectUnauthorized: false }
   });
   let mailOptions = {
     // should be replaced with real recipient's account
     from: "fortmami.sender@gmail.com",
     to: "fortmami.receiver@gmail.com",
     subject: req.body.subject,
-    body: "Message:  " + req.body.message,
     html: `<h3> ${req.body.message} </h3>`
   };
   transporter.sendMail(mailOptions, (error, info) => {
@@ -105,7 +105,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Check on dev mode don't uncomment
-app.use(express.static(__dirname + '/public/')); // Set up public folder
+app.use(express.static(__dirname + "/public/")); // Set up public folder
 // Handle SPA
 app.get(/.*/, (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
